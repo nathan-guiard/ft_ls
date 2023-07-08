@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 19:19:54 by nguiard          ###   ########.fr       */
+/*   Created: 2021/11/19 14:02:53 by nguiard           #+#    #+#             */
+/*   Updated: 2021/11/29 11:49:00 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS
-#define FT_LS
-
 #include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <grp.h>
-#include <error.h>
 
-#include "tree.h"
-#include "libft.h"
-#include "parsing.h"
+static void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
 
-//	error.c
-void	invalid_option_error(char s);
-
-#endif
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n == -2147483648)
+		write(fd, "-2147483648", 11);
+	else if (n >= 0 && n < 10)
+	{
+		ft_putchar_fd(n + '0', fd);
+	}
+	else if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(n * (-1), fd);
+	}
+	else
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+}		

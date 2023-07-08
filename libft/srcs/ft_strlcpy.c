@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 19:19:54 by nguiard          ###   ########.fr       */
+/*   Created: 2021/11/16 19:19:58 by nguiard           #+#    #+#             */
+/*   Updated: 2021/11/30 16:14:59 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS
-#define FT_LS
+#include <stddef.h>
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <grp.h>
-#include <error.h>
+static size_t	ft_strlen(const char *s)
+{
+	size_t	i;
 
-#include "tree.h"
-#include "libft.h"
-#include "parsing.h"
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
 
-//	error.c
-void	invalid_option_error(char s);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	i;
 
-#endif
+	i = 0;
+	if (size == 0)
+		return (ft_strlen(src));
+	while (src[i] && i < size - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (ft_strlen(src));
+}

@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 19:19:54 by nguiard          ###   ########.fr       */
+/*   Created: 2021/11/24 15:23:35 by nguiard           #+#    #+#             */
+/*   Updated: 2022/02/15 09:31:54 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS
-#define FT_LS
-
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <grp.h>
-#include <error.h>
-
-#include "tree.h"
 #include "libft.h"
-#include "parsing.h"
 
-//	error.c
-void	invalid_option_error(char s);
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*a;
 
-#endif
+	a = malloc(sizeof(t_list));
+	if (!a)
+	{
+		return (NULL);
+	}
+	a->content = content;
+	a->next = NULL;
+	return (a);
+}
+
+t_list_int	*ft_lstnew_int(long content)
+{
+	t_list_int	*a;
+
+	a = malloc(sizeof(t_list_int));
+	if (!a)
+	{
+		return (NULL);
+	}
+	a->content = content;
+	a->next = NULL;
+	return (a);
+}

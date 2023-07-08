@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 19:19:54 by nguiard          ###   ########.fr       */
+/*   Created: 2021/11/16 19:18:07 by nguiard           #+#    #+#             */
+/*   Updated: 2021/12/01 11:32:13 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS
-#define FT_LS
+#include <stddef.h>
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <grp.h>
-#include <error.h>
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
 
-#include "tree.h"
-#include "libft.h"
-#include "parsing.h"
-
-//	error.c
-void	invalid_option_error(char s);
-
-#endif
+	i = 0;
+	while (s1[i] && s2[i] && i < n)
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	if (s1[i] != s2[i] && i < n)
+		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (0);
+}

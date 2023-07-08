@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   count_putbin.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 19:19:54 by nguiard          ###   ########.fr       */
+/*   Created: 2022/01/26 15:01:53 by nguiard           #+#    #+#             */
+/*   Updated: 2022/05/05 12:45:26 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS
-#define FT_LS
+#include "ft_printf.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <grp.h>
-#include <error.h>
+int	count_putbin(unsigned int n)
+{
+	static int	i;
 
-#include "tree.h"
-#include "libft.h"
-#include "parsing.h"
-
-//	error.c
-void	invalid_option_error(char s);
-
-#endif
+	i = 0;
+	if (n <= 1)
+	{
+		i += count_putchar(n + '0');
+		return (i);
+	}
+	else
+	{
+		count_putbin(n / 2);
+		i += count_putchar((n % 2) + 48);
+	}
+	return (i);
+}

@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   get_whole_file.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 19:19:54 by nguiard          ###   ########.fr       */
+/*   Created: 2022/01/29 11:17:12 by nguiard           #+#    #+#             */
+/*   Updated: 2022/05/05 13:10:02 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS
-#define FT_LS
-
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <grp.h>
-#include <error.h>
-
-#include "tree.h"
 #include "libft.h"
-#include "parsing.h"
 
-//	error.c
-void	invalid_option_error(char s);
+char	*get_whole_file(int fd)
+{
+	char	*buff;
+	char	*res;
+	char	*to_free;
+	int		line;
 
-#endif
+	line = 0;
+	to_free = NULL;
+	to_free++;
+	buff = NULL;
+	res = NULL;
+	while (buff || line == 0)
+	{
+		buff = get_next_line(fd);
+		if (!buff)
+			break ;
+		line++;
+		to_free = res;
+		res = join(res, buff);
+	}
+	return (res);
+}

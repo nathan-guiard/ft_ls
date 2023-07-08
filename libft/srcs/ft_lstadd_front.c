@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 19:19:54 by nguiard          ###   ########.fr       */
+/*   Created: 2021/11/24 15:40:26 by nguiard           #+#    #+#             */
+/*   Updated: 2022/02/02 10:33:08 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS
-#define FT_LS
-
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <grp.h>
-#include <error.h>
-
-#include "tree.h"
 #include "libft.h"
-#include "parsing.h"
 
-//	error.c
-void	invalid_option_error(char s);
+void	ft_lstadd_front(t_list **alst, t_list *new)
+{
+	if (!*alst)
+	{
+		*alst = new;
+		return ;
+	}
+	new->next = *alst;
+	*alst = new;
+}
 
-#endif
+void	ft_lstadd_front_int(t_list_int **alst, t_list_int *new)
+{
+	if (!*alst)
+	{
+		*alst = new;
+		return ;
+	}
+	new->next = *alst;
+	*alst = new;
+}

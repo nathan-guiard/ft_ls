@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 19:19:54 by nguiard          ###   ########.fr       */
+/*   Created: 2021/11/23 13:54:22 by nguiard           #+#    #+#             */
+/*   Updated: 2021/12/02 10:17:57 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS
-#define FT_LS
+#include <stddef.h>
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <grp.h>
-#include <error.h>
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t			i;
+	unsigned char	*d;
+	unsigned char	*s;
 
-#include "tree.h"
-#include "libft.h"
-#include "parsing.h"
-
-//	error.c
-void	invalid_option_error(char s);
-
-#endif
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	i = 0;
+	d = (unsigned char *)dst;
+	s = (unsigned char *)src;
+	while (i < n)
+	{
+		*d = *s;
+		d++;
+		s++;
+		i++;
+	}
+	return (dst);
+}

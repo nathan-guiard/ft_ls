@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 19:19:54 by nguiard          ###   ########.fr       */
+/*   Created: 2021/11/25 19:34:57 by nguiard           #+#    #+#             */
+/*   Updated: 2021/12/01 11:30:35 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS
-#define FT_LS
+#include <stddef.h>
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <grp.h>
-#include <error.h>
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	size_t			i;
+	unsigned char	*buff;
 
-#include "tree.h"
-#include "libft.h"
-#include "parsing.h"
-
-//	error.c
-void	invalid_option_error(char s);
-
-#endif
+	buff = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		if (*buff == (unsigned char)c)
+			return ((void *)s + i);
+		i++;
+		buff++;
+	}
+	return (NULL);
+}

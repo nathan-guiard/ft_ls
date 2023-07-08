@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 22:55:10 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 18:07:03 by nguiard          ###   ########.fr       */
+/*   Updated: 2023/07/08 19:25:23 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,24 @@ void m(content_type k) {
 	puts(k);
 }
 
-int main () {
-	tree t;
-	node_tab_type	tab = calloc(sizeof(node_type), 3);
-	tree a = new_tree_content(strdup("salut"));
-	tree b = new_tree_content(strdup("truc"));
-	
-	t = new_tree();
-	t.content = strdup("yayaya");
-	tab[0] = &a;
-	tab[1] = &b;
-	t.nodes = tab;
-	
-	iter_tree_reverse(t, m);
+int main (int argc, str *argv) {
+	parsing_info p_info = parsing(argc, argv);
 
-	delete_tree(t);
+	printf("-a: %s\n", p_info.all ? "true": "false");
+	printf("-l: %s\n", p_info.flong ? "true": "false");
+	printf("-r: %s\n", p_info.reverse ? "true": "false");
+	printf("-R: %s\n", p_info.recursive ? "true": "false");
+	printf("-t: %s\n", p_info.time ? "true": "false");
+	printf("Files:\n");
+	
+	if (!p_info.files) {
+		printf("\tNone\n");
+	}
+	else {
+		for (int i = 0; p_info.files[i]; i++) {
+			printf("\t%s\n", p_info.files[i]);
+		}
+		free(p_info.files);
+	}
 	return 0;
 }

@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 19:19:54 by nguiard          ###   ########.fr       */
+/*   Created: 2023/07/08 19:02:42 by nguiard           #+#    #+#             */
+/*   Updated: 2023/07/08 19:21:33 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS
-#define FT_LS
+#include "ft_ls.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <grp.h>
-#include <error.h>
-
-#include "tree.h"
-#include "libft.h"
-#include "parsing.h"
-
-//	error.c
-void	invalid_option_error(char s);
-
-#endif
+void	invalid_option_error(char s) {
+	ft_putstr_fd("ft_ls: invalid option -- \'", 2);
+	ft_putchar_fd(s, 2);
+	ft_putendl_fd("\'", 2);
+}

@@ -1,35 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 19:19:54 by nguiard          ###   ########.fr       */
+/*   Created: 2021/11/24 17:58:03 by nguiard           #+#    #+#             */
+/*   Updated: 2022/02/10 12:57:43 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS
-#define FT_LS
-
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <grp.h>
-#include <error.h>
-
-#include "tree.h"
 #include "libft.h"
-#include "parsing.h"
 
-//	error.c
-void	invalid_option_error(char s);
+int	ft_lstsize(t_list *lst)
+{
+	t_list	*buff;
+	int		i;
 
-#endif
+	if (!lst)
+		return (0);
+	i = 1;
+	buff = lst;
+	while (buff->next != NULL)
+	{
+		i++;
+		buff = buff->next;
+	}
+	return (i);
+}
+
+int	ft_lstsize_int(t_list_int *lst)
+{
+	t_list_int	*buff;
+	int			i;
+
+	if (!lst)
+		return (0);
+	i = 1;
+	buff = lst;
+	while (buff->next != NULL)
+	{
+		i++;
+		buff = buff->next;
+	}
+	return (i);
+}

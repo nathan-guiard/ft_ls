@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*   count_putlong.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 19:19:54 by nguiard          ###   ########.fr       */
+/*   Created: 2021/12/08 11:32:27 by nguiard           #+#    #+#             */
+/*   Updated: 2022/05/05 13:00:36 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LS
-#define FT_LS
+#include "ft_printf.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <sys/types.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <time.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <grp.h>
-#include <error.h>
+int	count_putlong(long n)
+{
+	static int	i;
 
-#include "tree.h"
-#include "libft.h"
-#include "parsing.h"
-
-//	error.c
-void	invalid_option_error(char s);
-
-#endif
+	i = 0;
+	if (n == LONG_MIN)
+		return (count_putstr("-9223372036854775808"));
+	if (n >= 0 && n < 10)
+	{
+		i += count_putchar(n + '0');
+		return (i);
+	}
+	else if (n < 0)
+	{
+		count_putchar('-');
+		count_putnbr(n * (-1));
+		i += 1;
+	}
+	else
+	{
+		count_putnbr(n / 10);
+		i += count_putchar((n % 10) + 48);
+	}
+	return (i);
+}
