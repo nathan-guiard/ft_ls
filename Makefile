@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2023/07/02 01:11:27 by nguiard          ###   ########.fr        #
+#    Updated: 2023/07/08 17:56:01 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC =	$(addsuffix .c, 		\
 			tree_manipulation	\
 			tree_utils			\
 			tree_nodes			\
+			delete_tree			\
 			)					\
 		))
 
@@ -29,7 +30,7 @@ CC		= gcc
 
 INCLUDE = -Iinclude/
 
-CFLAGS	= -Wall -Werror -Wextra ${INCLUDE} -g #-fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra ${INCLUDE} -g -fsanitize=address
 
 NAME	= ft_ls
 

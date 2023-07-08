@@ -2,3 +2,5 @@ obj/*.o
 obj/*/*.o
 
 ft_ls
+
+.vscode

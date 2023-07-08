@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 23:08:48 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/02 00:48:17 by nguiard          ###   ########.fr       */
+/*   Updated: 2023/07/03 20:44:33 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,7 @@ tree	new_tree_content_nodes(content_type content,
 	return res;
 }
 
-/**
- * @brief		Frees the content of a node. Does not free the
- * 				array of nodes. Make sure that the array is empty
- * 
- * @param node	tree node
- */
-void	delete_node(tree node) {
-	if (node.content) {
-		free(node.content);
-	}
-	if (node.nodes) {
-		free(node.nodes);
-	}
-}
+
 
 
 

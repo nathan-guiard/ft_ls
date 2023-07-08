@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 23:23:25 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/02 00:13:08 by nguiard          ###   ########.fr       */
+/*   Updated: 2023/07/08 17:52:06 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	iter_tree(tree tr, iter_tree_function fnc) {
 
 void	iter_tree_reverse(tree tr, iter_tree_function fnc) {
 
-	if (tr.nodes) {
+	if (tr.nodes && tr.nodes[0]) {
 		for (size_t i = nodelen(tr.nodes) ; i + 1 != 0; i--) {
 			if (tr.nodes[i]) {
 				iter_tree(*tr.nodes[i], fnc);

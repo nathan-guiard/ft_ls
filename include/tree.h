@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 23:05:00 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/02 01:08:34 by nguiard          ###   ########.fr       */
+/*   Updated: 2023/07/03 20:51:59 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ tree	new_tree(void);
 tree	new_tree_content(content_type content);
 tree	new_tree_nodes(node_tab_type nodes, size_t size);
 tree	new_tree_content_nodes(content_type content, node_tab_type nodes, size_t size);
+
+//	delete_tree.c
+void	delete_node(tree node);
+void	free_node_array(tree node);
+void	delete_tree(tree node);
 
 //	tree_manipulation.c
 void	iter_tree(tree tr, iter_tree_function fnc);
