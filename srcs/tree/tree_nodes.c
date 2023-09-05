@@ -6,14 +6,14 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 00:21:32 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/02 01:06:18 by nguiard          ###   ########.fr       */
+/*   Updated: 2023/09/05 21:32:39 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tree.h"
 
 void	add_node(tree *tr, node_type new) {
-	size_t size = nodelen(tr->nodes);
+	size_t size = tr->size;
 
 	if (!tr->nodes) {
 		tr->nodes = calloc(sizeof(tree), NODE_MALLOC_SIZE);

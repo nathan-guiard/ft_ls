@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 19:19:54 by nguiard          ###   ########.fr       */
+/*   Updated: 2023/09/04 19:40:42 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,22 @@
 #include <pwd.h>
 #include <grp.h>
 #include <error.h>
+#include <dirent.h>
 
 #include "tree.h"
 #include "libft.h"
 #include "parsing.h"
 
+#define GET(x, y) x ? x : y
+#define TDIR 4
+
+typedef struct stat stat_t;
+typedef struct dirent dirent;
+
 //	error.c
 void	invalid_option_error(char s);
+
+// get_files.c
+tree	get_files(str directory, parsing_info info);
 
 #endif

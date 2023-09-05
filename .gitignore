@@ -1,6 +1,9 @@
 obj/*.o
 obj/*/*.o
 
+libft/libft.a
+libft/srcs/*.o
+
 ft_ls
 
 .vscode

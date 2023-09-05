@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 23:05:00 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/03 20:51:59 by nguiard          ###   ########.fr       */
+/*   Updated: 2023/09/05 21:31:38 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,19 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
+#include <sys/stat.h>
+
+#include "libft.h"
 
 #define NODE_MALLOC_SIZE 5
 
-typedef void *			content_type;
+typedef struct content_cell
+{
+	struct stat	stat;
+	char *		name;
+} content_cell;
+
+typedef content_cell	content_type;
 typedef struct tree *	node_type;
 typedef node_type *		node_tab_type;
 typedef void			(*iter_tree_function)(content_type);

@@ -6,34 +6,24 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 22:55:10 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/08 19:25:23 by nguiard          ###   ########.fr       */
+/*   Updated: 2023/09/05 21:36:41 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void m(content_type k) {
-	puts(k);
-}
-
 int main (int argc, str *argv) {
-	parsing_info p_info = parsing(argc, argv);
-
-	printf("-a: %s\n", p_info.all ? "true": "false");
-	printf("-l: %s\n", p_info.flong ? "true": "false");
-	printf("-r: %s\n", p_info.reverse ? "true": "false");
-	printf("-R: %s\n", p_info.recursive ? "true": "false");
-	printf("-t: %s\n", p_info.time ? "true": "false");
-	printf("Files:\n");
+	parsing_info	p_info = parsing(argc, argv);
+	stat_t			test;
+	tree			files;
 	
-	if (!p_info.files) {
-		printf("\tNone\n");
-	}
-	else {
-		for (int i = 0; p_info.files[i]; i++) {
-			printf("\t%s\n", p_info.files[i]);
-		}
-		free(p_info.files);
-	}
+	(void)p_info;
+	files = get_files(".", p_info);
+
+	for (size_t i = 0; i < files.size && files.nodes[i]; i++) {
+		ft_printf("%d: %s\n", i, files.nodes[i]->content.name);
+	}	
+	
+	(void)test;
 	return 0;
 }

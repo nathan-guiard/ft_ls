@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2023/07/08 19:27:39 by nguiard          ###   ########.fr        #
+#    Updated: 2023/09/04 19:42:47 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC =	$(addsuffix .c, 			\
 		main 						\
 		error						\
 		parsing						\
+		get_files					\
 			$(addprefix tree/,		\
 			new_tree				\
 			tree_manipulation		\
@@ -123,7 +124,7 @@ libft_rule:
 		fi;
 
 end_make:
-	echo -ne "\033[14;H\033[?25h"
+	echo -ne "\033[14;H\033[?25h\033[0m"
 
 re: fclean all
 
