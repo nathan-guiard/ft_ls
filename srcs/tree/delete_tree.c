@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 20:44:36 by nguiard           #+#    #+#             */
-/*   Updated: 2023/07/03 20:53:06 by nguiard          ###   ########.fr       */
+/*   Updated: 2023/09/11 18:47:52 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
  * @param node	tree node
  */
 void	delete_node(tree node) {
-	if (node.content) {
-		free(node.content);
+	if (node.content.name) {
+		free(node.content.name);
 	}
 	if (node.nodes) {
 		free(node.nodes);
