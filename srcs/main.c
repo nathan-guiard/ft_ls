@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 22:55:10 by nguiard           #+#    #+#             */
-/*   Updated: 2023/09/11 18:50:14 by nguiard          ###   ########.fr       */
+/*   Updated: 2023/09/11 19:36:51 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int main (int argc, str *argv) {
 	tree			files;
 	
 	files = get_files(".", p_info);
-
-	for (size_t i = 0; files.nodes[i]; i++) {
-		ft_printf("%d: %s\n", i, files.nodes[i]->content.name);
-	}
+	display(files, p_info);
 
 	delete_tree(files);
+	if (p_info.files) {
+		free(p_info.files);
+	}
 	return 0;
 }

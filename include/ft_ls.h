@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/09/04 19:40:42 by nguiard          ###   ########.fr       */
+/*   Updated: 2023/09/11 20:32:40 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,8 @@ void	invalid_option_error(char s);
 
 // get_files.c
 tree	get_files(str directory, parsing_info info);
+
+// display.c
+void	display(tree tr, parsing_info info);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2023/09/11 18:48:20 by nguiard          ###   ########.fr        #
+#    Updated: 2023/09/11 20:35:44 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC =	$(addsuffix .c, 			\
 		error						\
 		parsing						\
 		get_files					\
+		display						\
 			$(addprefix tree/,		\
 			new_tree				\
 			tree_manipulation		\
@@ -29,13 +30,13 @@ SHELL	= /bin/zsh
 
 OBJ		= ${SRC:srcs/%.c=obj/%.o}
 
-CC		= gcc
+CC		= clang
 
 LIBFT	= libft/libft.a
 
 INCLUDE = -Iinclude/
 
-CFLAGS	= -Wall -Werror -Wextra ${INCLUDE} -g -fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra ${INCLUDE} -g3 #-fsanitize=address
 
 NAME	= ft_ls
 
