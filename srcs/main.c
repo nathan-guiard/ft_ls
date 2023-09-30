@@ -19,7 +19,7 @@ int main (int argc, str *argv) {
 	tree			files;
 	
 	files = get_files(".", p_info);
-	display(files, p_info);
+	display(files, p_info, true);
 
 	delete_tree(files);
 	if (p_info.files) {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:37:48 by nguiard           #+#    #+#             */
-/*   Updated: 2023/09/12 19:06:45 by nguiard          ###   ########.fr       */
+/*   Updated: 2023/09/30 15:25:36 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ size_t	index_of_first_alnum(str s) {
 	}
 	
 	return i;
+}
+
+void	swap_nodes(node_type *a, node_type *b) {
+	node_type tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
 
 int	ft_strcasecmp(str s1, str s2) {
@@ -54,7 +62,6 @@ bool	display_cmp(content_type c1, content_type c2, bool sort_time) {
 
 	ret_offset = ft_strcasecmp(c1.name + off1, c2.name + off2);
 
-
 	if (ret_offset != 0) {
 		return (ret_offset > 0);
 	}
@@ -62,28 +69,41 @@ bool	display_cmp(content_type c1, content_type c2, bool sort_time) {
 	return (ret_normal > 0);
 }
 
-void	swap_nodes(node_type *a, node_type *b) {
-	node_type tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	display(tree tr, parsing_info info) {
-	for (int i = 0; tr.nodes[i]; i++) {
-		for (int j = 0; tr.nodes[j + 1]; j++) {
-			if (display_cmp(tr.nodes[j]->content, tr.nodes[j + 1]->content, info.time) ^ info.reverse) {
-				swap_nodes(&tr.nodes[j], &tr.nodes[j + 1]);
+void	sort_tree(tree *tr, parsing_info info) {
+	for (int i = 0; tr->nodes[i]; i++) {
+		for (int j = 0; tr->nodes[j + 1]; j++) {
+			if (display_cmp(tr->nodes[j]->content, tr->nodes[j + 1]->content, info.time) ^ info.reverse) {
+				swap_nodes(&tr->nodes[j], &tr->nodes[j + 1]);
 			}
 		}
-		// for (int k = 0; tr.nodes[k]; k++) {
-		// 	printf("%s ", tr.nodes[k]->content.name);
-		// }
-		// printf("\n");
 	}
+}
 
+size_t get_max_size(tree *tr) {
+	size_t	max = 0;
+
+	for (int i = 0; tr->nodes[i]; i++) {
+		if ((unsigned long)tr->nodes[i]->content.stat.st_size > max)
+			max = tr->nodes[i]->content.stat.st_size;
+	}
+	
+	return max;
+}
+
+void	display(tree tr, parsing_info info, bool first) {
+	size_t max_size = get_max_size(&tr);
+	sort_tree(&tr, info);
+	
+	if (!first) {
+		ft_printf("%s:\n", tr.content.name);
+	}
 	for (int i = 0; tr.nodes[i]; i++) {
-		printf("%s\n", tr.nodes[i]->content.name);
+		content_type c = tr.nodes[i]->content;
+		if (!(c.name[0] == '.' && !info.all)) {
+			display_one_line(c, info, max_size);
+		}
+	}
+	if (!first) {
+		ft_putchar_fd(20, 1);
 	}
 }

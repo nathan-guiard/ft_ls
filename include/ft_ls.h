@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/09/11 20:32:40 by nguiard          ###   ########.fr       */
+/*   Updated: 2023/09/30 15:25:10 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 
 #define GET(x, y) x ? x : y
 #define TDIR 4
+#define TLNK 10
 
 typedef struct stat stat_t;
 typedef struct dirent dirent;
@@ -43,6 +44,8 @@ void	invalid_option_error(char s);
 tree	get_files(str directory, parsing_info info);
 
 // display.c
-void	display(tree tr, parsing_info info);
+void	display(tree tr, parsing_info info, bool first);
 
+// one_line.c
+void	display_one_line(content_type c, parsing_info info, size_t max_size);
 #endif

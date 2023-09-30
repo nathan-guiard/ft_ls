@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
+#    By: nathan <nathan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2023/09/11 20:35:44 by nguiard          ###   ########.fr        #
+#    Updated: 2023/09/30 14:41:47 by nathan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC =	$(addsuffix .c, 			\
 		parsing						\
 		get_files					\
 		display						\
+		one_line					\
 			$(addprefix tree/,		\
 			new_tree				\
 			tree_manipulation		\
@@ -36,7 +37,7 @@ LIBFT	= libft/libft.a
 
 INCLUDE = -Iinclude/
 
-CFLAGS	= -Wall -Werror -Wextra ${INCLUDE} -g3 #-fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra ${INCLUDE} -g3 -fsanitize=address
 
 NAME	= ft_ls
 
