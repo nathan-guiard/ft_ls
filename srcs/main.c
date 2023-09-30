@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include <dirent.h>
 
 bool	display_cmp(content_type c1, content_type c2, parsing_info info);
 
@@ -27,12 +26,5 @@ int main (int argc, str *argv) {
 		free(p_info.files);
 	}
 
-	alphasort();
-
-	content_type c1, c2;
-	c1.name = "Git";
-	c2.name = "ft_ls";
-
-	printf("%s [%s|%s]\n", display_cmp(c1, c2, p_info) ? "swap" : "no swap", c1.name, c2.name);
 	return 0;
 }
