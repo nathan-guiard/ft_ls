@@ -6,7 +6,7 @@
 /*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:37:48 by nguiard           #+#    #+#             */
-/*   Updated: 2023/10/01 16:07:46 by nathan           ###   ########.fr       */
+/*   Updated: 2023/10/01 16:18:05 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ bool	display_cmp(content_type c1, content_type c2, bool sort_time) {
 }
 
 void	sort_tree(tree *tr, parsing_info info) {
+	if (!tr || !tr->nodes) {
+		return;
+	}
 	for (int i = 0; tr->nodes[i]; i++) {
 		for (int j = 0; tr->nodes[j + 1]; j++) {
 			if (display_cmp(tr->nodes[j]->content, tr->nodes[j + 1]->content, info.time) ^ info.reverse) {
@@ -81,6 +84,10 @@ void	sort_tree(tree *tr, parsing_info info) {
 
 size_t get_max_size(tree *tr) {
 	size_t	max = 0;
+
+	if (!tr->nodes) {
+		return max;
+	}
 
 	for (int i = 0; tr->nodes[i]; i++) {
 		if ((unsigned long)tr->nodes[i]->content.stat.st_size > max)
@@ -108,13 +115,18 @@ void	display(tree tr, parsing_info info, bool first) {
 	node_tab_type	next_nodes = ft_calloc(sizeof(node_type), tr.size + 1);
 	int				k = 0;
 
+	if (!tr.nodes) {
+		free(next_nodes);
+		return;
+	}
+
 	sort_tree(&tr, info);
 
 	if (!first) {
 		ft_putchar_fd(20, 1);
 	}
 	if (!first) {
-		ft_printf("%s:\n", tr.content.name);
+		ft_printf("\n%s:\n", tr.content.name);
 	}
 	for (int i = 0; tr.nodes[i]; i++) {
 		content_type	c = tr.nodes[i]->content;
@@ -130,8 +142,8 @@ void	display(tree tr, parsing_info info, bool first) {
 		}
 	}
 
-	for (int i = 0; next_nodes[k]; i++) {
-		display(*next_nodes[k], info, false);
+	for (int i = 0; next_nodes[i]; i++) {
+		display(*next_nodes[i], info, false);
 	}
 	
 	free(next_nodes);
