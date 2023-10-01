@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 23:05:00 by nguiard           #+#    #+#             */
-/*   Updated: 2023/09/11 20:32:07 by nguiard          ###   ########.fr       */
+/*   Updated: 2023/10/01 15:34:13 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ typedef struct content_cell
 typedef content_cell	content_type;
 typedef struct tree *	node_type;
 typedef node_type *		node_tab_type;
-typedef void			(*iter_tree_function)(content_type);
-typedef content_type	(*map_tree_function)(content_type);
 
 typedef struct tree
 {
@@ -41,6 +39,8 @@ typedef struct tree
 	node_tab_type	nodes;
 	size_t			size;
 }	tree;
+
+typedef void			(*iter_tree_function)(tree);
 
 //	new_tree.c
 tree	new_tree(void);

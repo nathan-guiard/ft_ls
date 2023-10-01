@@ -6,7 +6,7 @@
 /*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:37:48 by nguiard           #+#    #+#             */
-/*   Updated: 2023/09/30 15:25:36 by nathan           ###   ########.fr       */
+/*   Updated: 2023/10/01 16:07:46 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,49 @@ size_t get_max_size(tree *tr) {
 	return max;
 }
 
+str basename(const str path) {
+    char *last_slash = strrchr(path, '/');
+
+    if (last_slash != NULL) {
+        // If the path contains at least one slash, return the string after the last slash
+        return strdup(last_slash + 1);
+    } else {
+        // If there is no slash, return the original path
+        return strdup(path);
+    }
+}
+
+
 void	display(tree tr, parsing_info info, bool first) {
-	size_t max_size = get_max_size(&tr);
+	size_t			max_size = get_max_size(&tr);
+	node_tab_type	next_nodes = ft_calloc(sizeof(node_type), tr.size + 1);
+	int				k = 0;
+
 	sort_tree(&tr, info);
-	
+
+	if (!first) {
+		ft_putchar_fd(20, 1);
+	}
 	if (!first) {
 		ft_printf("%s:\n", tr.content.name);
 	}
 	for (int i = 0; tr.nodes[i]; i++) {
-		content_type c = tr.nodes[i]->content;
-		if (!(c.name[0] == '.' && !info.all)) {
+		content_type	c = tr.nodes[i]->content;
+		str				dir_name = basename(c.name);
+
+		if (!(dir_name[0] == '.' && !info.all)) {
 			display_one_line(c, info, max_size);
 		}
+		free(dir_name);
+		if (S_ISDIR(c.stat.st_mode)) {
+			next_nodes[k] = tr.nodes[i];
+			k++;
+		}
 	}
-	if (!first) {
-		ft_putchar_fd(20, 1);
+
+	for (int i = 0; next_nodes[k]; i++) {
+		display(*next_nodes[k], info, false);
 	}
+	
+	free(next_nodes);
 }
