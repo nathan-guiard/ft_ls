@@ -6,7 +6,7 @@
 /*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 23:05:00 by nguiard           #+#    #+#             */
-/*   Updated: 2023/10/01 15:34:13 by nathan           ###   ########.fr       */
+/*   Updated: 2023/10/01 16:57:31 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct content_cell
 {
 	struct stat	stat;
 	char *		name;
-} content_cell;
+}	content_cell;
 
 typedef content_cell	content_type;
 typedef struct tree *	node_type;

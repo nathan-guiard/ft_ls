@@ -6,7 +6,7 @@
 /*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 22:55:07 by nguiard           #+#    #+#             */
-/*   Updated: 2023/09/30 15:25:10 by nathan           ###   ########.fr       */
+/*   Updated: 2023/10/01 16:23:24 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	invalid_option_error(char s);
 tree	get_files(str directory, parsing_info info);
 
 // display.c
-void	display(tree tr, parsing_info info, bool first);
+void	display(tree tr, parsing_info info, bool first, str root);
 
 // one_line.c
 void	display_one_line(content_type c, parsing_info info, size_t max_size);

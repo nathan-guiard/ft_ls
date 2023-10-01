@@ -6,7 +6,7 @@
 /*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:37:48 by nguiard           #+#    #+#             */
-/*   Updated: 2023/10/01 16:18:05 by nathan           ###   ########.fr       */
+/*   Updated: 2023/10/01 17:13:13 by nathan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,33 +101,34 @@ str basename(const str path) {
     char *last_slash = strrchr(path, '/');
 
     if (last_slash != NULL) {
-        // If the path contains at least one slash, return the string after the last slash
         return strdup(last_slash + 1);
     } else {
-        // If there is no slash, return the original path
         return strdup(path);
     }
 }
 
 
-void	display(tree tr, parsing_info info, bool first) {
+void	display(tree tr, parsing_info info, bool first, str root) {
 	size_t			max_size = get_max_size(&tr);
 	node_tab_type	next_nodes = ft_calloc(sizeof(node_type), tr.size + 1);
 	int				k = 0;
 
+	(void)root;
+
 	if (!tr.nodes) {
 		free(next_nodes);
+		if (first) {
+			display_one_line(tr.content, info, tr.content.stat.st_size);
+		}
 		return;
 	}
 
 	sort_tree(&tr, info);
 
-	if (!first) {
-		ft_putchar_fd(20, 1);
-	}
-	if (!first) {
-		ft_printf("\n%s:\n", tr.content.name);
-	}
+	if (!first)
+		ft_putchar_fd('\n', 1);
+	if (info.flong)
+		ft_printf("%s:\n", tr.content.name);
 	for (int i = 0; tr.nodes[i]; i++) {
 		content_type	c = tr.nodes[i]->content;
 		str				dir_name = basename(c.name);
@@ -143,7 +144,7 @@ void	display(tree tr, parsing_info info, bool first) {
 	}
 
 	for (int i = 0; next_nodes[i]; i++) {
-		display(*next_nodes[i], info, false);
+		display(*next_nodes[i], info, false, root);
 	}
 	
 	free(next_nodes);
