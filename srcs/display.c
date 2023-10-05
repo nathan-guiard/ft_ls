@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 19:37:48 by nguiard           #+#    #+#             */
-/*   Updated: 2023/10/01 17:13:13 by nathan           ###   ########.fr       */
+/*   Updated: 2023/10/05 16:15:17 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,20 +127,31 @@ void	display(tree tr, parsing_info info, bool first, str root) {
 
 	if (!first)
 		ft_putchar_fd('\n', 1);
-	if (info.flong)
-		ft_printf("%s:\n", tr.content.name);
+	if (info.flong || !first || info.recursive) {
+		if (root == tr.content.name && first) {
+			;
+		}
+		else if (!info.files) {
+			ft_putstr_fd("./", 1);
+		} else if (!first || info.recursive) {
+			ft_putstr_fd(root, 1);
+			write(1, "/", 1);
+		}
+		ft_putstr_fd(tr.content.name, 1);
+		write(1, ":\n", 2);
+	}
 	for (int i = 0; tr.nodes[i]; i++) {
 		content_type	c = tr.nodes[i]->content;
-		str				dir_name = basename(c.name);
+		str				filename = basename(c.name);
 
-		if (!(dir_name[0] == '.' && !info.all)) {
+		if (!(filename[0] == '.' && !info.all)) {
 			display_one_line(c, info, max_size);
 		}
-		free(dir_name);
-		if (S_ISDIR(c.stat.st_mode)) {
+		if (S_ISDIR(c.stat.st_mode) && !(filename[0] == '.' && !info.all)) {
 			next_nodes[k] = tr.nodes[i];
 			k++;
 		}
+		free(filename);
 	}
 
 	for (int i = 0; next_nodes[i]; i++) {

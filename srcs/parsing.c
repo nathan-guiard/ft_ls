@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nathan <nathan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:24:28 by nguiard           #+#    #+#             */
-/*   Updated: 2023/10/01 16:34:57 by nathan           ###   ########.fr       */
+/*   Updated: 2023/10/02 11:17:04 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ parsing_info	parsing(int argc, str *argv) {
 			infos.files[nb_files] = arg;
 			nb_files++;
 		}
+	}
+
+	if (infos.files && !infos.files[0]) {
+		free(infos.files);
+		infos.files = 0;
 	}
 	
 	return infos;
